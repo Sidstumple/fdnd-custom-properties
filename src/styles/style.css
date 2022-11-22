@@ -1,8 +1,4 @@
-:root {
-  --c-salmon: #FFC48F;
-  --c-blue: #4A46FF;
-  --bezier: cubic-bezier(0.17, 0.67, 0, 1);
-}
+/* UTILITY */
 
 .sr-only {
   position: absolute;
@@ -45,6 +41,7 @@ li a {
 
 @import url("https://rsms.me/inter/inter.css");
 
+/* RESET */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -55,43 +52,46 @@ body {
   font-family: Inter-Variable, sans-serif;
 }
 
+svg {
+  fill: currentColor;
+}
+
+/* CUSTOM PROPERTIES */
+:root {
+  --background: #101010;
+  --color: #f1f1f1;
+}
+
+.color--background {
+  color: var(--background);
+}
+
+.color--color {
+  color: var(--color);
+}
+
+.background--background {
+  background: var(--background);
+}
+
+.background--color {
+  background: var(--color);
+}
+
 body {
-  background-color: var(--c-salmon);
-  color: var(--c-blue);
+  background-color: var(--background);
+  color: var(--color);
   transition: background 0.4s ease-out, color 0.4s ease-out; 
 }
 
-body.extra-contrast {
-  --c-salmon: hotpink;
-  --c-blue: #010101;
-}
-
-body.extra-contrast .header__contrast-trigger svg {
-  transform: rotate(180deg);
-}
-
-/* CURSOR */
-.cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  background: var(--c-blue);
-  z-index: 10;
-  transition: transform 0.2s var(--bezier);
-  pointer-events: none;
-}
-@media (max-width: 750px) {
-  .cursor {
-    display: none;
-  }
-}
 
 /* HEADER */
 .header {
   width: 100%;
+  max-width: 1440px;
+  margin: auto;
 }
+
 
 .header__nav {
   display: flex;
@@ -99,6 +99,10 @@ body.extra-contrast .header__contrast-trigger svg {
   align-items: center;
   width: 100%;
   padding: 1.125rem clamp(1.5rem, calc(120 / 1440 * 100vw), 7.5rem);
+}
+
+.header__logo {
+  width: 5.75rem;
 }
 
 .header__trigger {
@@ -137,7 +141,7 @@ body.extra-contrast .header__contrast-trigger svg {
 }
 
 .header__trigger.is-open {
-  color: var(--c-salmon);
+  color: var(--background);
 }
 
 .header__trigger.is-open span {
@@ -164,8 +168,8 @@ body.extra-contrast .header__contrast-trigger svg {
     position: fixed;
     z-index: 10;
     inset: 0;
-    background-color: var(--c-blue);
-    color: var(--c-salmon);
+    background-color: var(--color);
+    color: var(--background);
     flex-direction: column;
     padding: 8rem 1.5rem;
     transform: translateY(-101%);
@@ -193,7 +197,7 @@ body.extra-contrast .header__contrast-trigger svg {
 }
 
 .header__contrast-trigger svg {
-  fill: var(--c-blue);
+  fill: var(--color);
   width: 1.5rem;
   height: 1.5rem;
   transition: transform 0.4s ease-out;
@@ -201,6 +205,8 @@ body.extra-contrast .header__contrast-trigger svg {
 
 /* PAGE HEADER */
 .page-header {
+  max-width: 1440px;
+  margin: auto;
   width: 100%;
   padding: 1.25rem clamp(1.5rem, calc(120 / 1440 * 100vw), 7.5rem) 0;
 }
@@ -217,7 +223,7 @@ body.extra-contrast .header__contrast-trigger svg {
 .page-header__title {
   position: relative;
   z-index: 1;
-  background: var(--c-salmon);
+  background: var(--background);
   padding: 1.5rem 5rem 1.5rem 2.5rem;
   width: max-content;
   border-radius: 0 0 1.5rem 0;
@@ -231,7 +237,7 @@ body.extra-contrast .header__contrast-trigger svg {
   top: 0;
   right: -1.5rem;
   border-radius: 50%;
-  box-shadow: -0.75rem -0.75rem 0 0 var(--c-salmon);
+  box-shadow: -0.75rem -0.75rem 0 0 var(--background);
 }
 
 .page-header__title h1 {
@@ -266,140 +272,23 @@ body.extra-contrast .header__contrast-trigger svg {
   }
 }
 
-
-/* TEXT WITH IMAGE */
-.text-with-image {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1.25rem clamp(1.5rem, calc(120 / 1440 * 100vw), 7.5rem) 0;
-}
-
-.text-with-image h2 {
-  font-size: clamp(2rem, calc(40 / 1440 * 100vw), 2.5rem)
-}
-
-.text-with-image__image {
-  width: 50%;
-  aspect-ratio: 1;
-  flex-grow: 1;
-}
-
-.text-with-image__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1.5rem;
-}
-
-.text-with-image__text {
-  width: 50%;
-  padding: clamp(1.5rem, calc(40 / 1440 * 100vw), 2.5rem);
-  flex-grow: 1;
-  min-width: 300px;
-}
-
-/* FORM */
-
-.form-container {
-  padding: 3.75rem clamp(1.5rem, calc(120 / 1440 * 100vw), 7.5rem) 1.5rem;
-}
-
-.form__input {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column-reverse;
-  width: 100%;
-}
-
-.form__input + .form__input {
-  margin-top: 1rem;
-}
-
-label[for="underage"] {
-  margin-top: 1rem;
-}
-
-.form__input input {
-  width: 100%;
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  color: inherit;
-  border: 1px solid currentColor;
-}
-
-.form__input input::placeholder {
-  color: var(--c-blue);
-  opacity: 0.5;
-}
-
-.form__input input[type="radio"] {
-  position: absolute;
-  left: -9999px;
-
-  width: 1px;
-  height: 1px;
-}
-
-.form__input input[type="radio"]:focus + label {
-  border: 1px solid blue;
-}
-
-
-.form__input input[type="radio"]:checked + label::after {
-  opacity: 1;
-}
-
-.form__input input[type="radio"] + label {
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-
-.form__input input[type="radio"] + label::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 16px;
-  height: 16px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-}
-
-.form__input input[type="radio"] + label::after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 8px;
-  height: 8px;
-  background: currentColor;
-  border-radius: 50%;
-  opacity: 0;
-}
-
-.form button {
-  background-color: var(--c-blue);
-  color: var(--c-salmon);
-  padding: 1rem;
-  font-size: 1rem;
-  margin-top: 2rem;
-  border: none;
-}
-
-
 /* FOOTOR */
 
 .footer {
   width: 100%;
-  margin-top: 5rem;
-  background-color: var(--c-blue);
+  max-width: 1440px;
+  margin: 5rem auto 0;
+  background-color: var(--color);
   border-radius: 2.5rem 2.5rem 0 0;
+}
+
+.footer__logo svg {
+  width: 5.75rem;
 }
 
 .footer__top {
   padding: 3.75rem clamp(1.5rem, calc(120 / 1440 * 100vw), 7.5rem) 1.5rem;
-  color: var(--c-salmon);
+  color: var(--background);
 }
 
 .footer__top-bottom {
@@ -425,7 +314,7 @@ label[for="underage"] {
 .footer__bottom {
   padding: 1.5rem clamp(1.5rem, calc(120 / 1440 * 100vw), 7.5rem);
   border-radius: 2.5rem 2.5rem 0 0;
-  background-color: var(--c-salmon);
+  background-color: var(--background);
 }
 
 .footer__bottom .footer__nav {
